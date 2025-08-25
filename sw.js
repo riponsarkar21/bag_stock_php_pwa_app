@@ -3,10 +3,10 @@
 const CACHE_NAME = "bagstock-cache-v1";
 const ASSETS = [
   "./",
-  "./index.html",
+  "./index.php",
   "./manifest.json",
   "./style.css",
-  "./script.js",
+  "./script6.js",
   "./icons/icon-96x96.png",
   "./icons/icon-192x192.png",
   "./icons/icon-512x512.png"
