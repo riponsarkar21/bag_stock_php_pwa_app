@@ -1,6 +1,8 @@
 
 :root{
-  --bg:#0b1220; --card:#141b2d; --muted:#9aa3b2; --text:#e5e7eb;
+  --bg1:#0b1220; --card:#141b2d; --muted:#9aa3b2; --text:#e5e7eb;
+  --bg:#aa00aa; --card:#141b2d; --muted:#9aa3b2; --text:#e5e7eb;
+
   --accent:#22c55e; --ring:rgba(255,255,255,.12); --border:rgba(255,255,255,.08);
   --shadow:0 10px 30px rgba(0,0,0,.35); --radius:10px; --pad:14px; --gap:12px;
   --bm-2ply:#ffffff; --gold-2ply:#d4af37; --gold-1ply:#e7d289;
@@ -100,4 +102,5 @@ header.appbar{
 .input-row .total{background:rgba(255,255,255,.04);font-weight:700;margin-right: -1px;text-align: right;padding-right: 5px;}
 
 .shift-selection-dropdown{background-color: var(--bg);color: var(--text);}
+
 
