@@ -1,6 +1,6 @@
 // sw.js - Service Worker for Bag Stock PWA
 
-const CACHE_NAME = "bagstock-cache-v1";
+const CACHE_NAME = "bagstock-cache-v2"; // bump version when files change
 const ASSETS = [
   "./",
   "./index.html",
@@ -19,7 +19,7 @@ self.addEventListener("install", event => {
       return cache.addAll(ASSETS);
     })
   );
-  self.skipWaiting();
+  self.skipWaiting(); // activate immediately
 });
 
 // Activate SW & clean old caches
@@ -34,11 +34,20 @@ self.addEventListener("activate", event => {
   self.clients.claim();
 });
 
-// Fetch from cache first, then network fallback
+// Fetch: serve from cache, update in background
 self.addEventListener("fetch", event => {
   event.respondWith(
-    caches.match(event.request).then(res => {
-      return res || fetch(event.request);
+    caches.match(event.request).then(cachedResponse => {
+      const fetchPromise = fetch(event.request)
+        .then(networkResponse => {
+          // Update cache with latest version
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, networkResponse.clone());
+          });
+          return networkResponse;
+        })
+        .catch(() => cachedResponse); // fallback to cache if offline
+      return cachedResponse || fetchPromise;
     })
   );
 });
